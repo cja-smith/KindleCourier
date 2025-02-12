@@ -50,13 +50,13 @@ class GuardianAPIClient:
             }
 
         else:
-            fields = data['fields']
+            fields = data.get('fields', {})
             return {
-                'headline': fields['headline'],
-                'trailText': fields['trailText'],
-                'byline': fields['byline'],
-                'body': fields['body'],
-                'thumbnail': fields['thumbnail'],
+                'headline': fields.get('headline', ''),
+                'trailText': fields.get('trailText', ''),
+                'byline': fields.get('byline', ''),
+                'body': fields.get('body', ''),
+                'thumbnail': fields.get('thumbnail', ''),
             }
 
 
