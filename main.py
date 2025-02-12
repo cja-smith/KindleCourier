@@ -1,4 +1,5 @@
 import os
+import time
 
 from dotenv import load_dotenv
 
@@ -35,6 +36,8 @@ for url in urls:
             body=article_data['body'],
             thumbnail=article_data['thumbnail'],
         )
+    time.sleep(1)
+
 
 '''
 Convert articles into ePub
