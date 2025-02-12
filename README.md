@@ -2,7 +2,7 @@
 
 # KindleCourier
 
-Automatically pull top stories from the Guardian and have them delivered to your Kindle
+Automatically pull top stories from news sites (currently the Guardian) and have them delivered to your Kindle
 
 ## Setup
 1. Get a Guardian API key from https://open-platform.theguardian.com/access/
@@ -11,8 +11,3 @@ Automatically pull top stories from the Guardian and have them delivered to your
 
 ## Usage
 TBD
-
-## TODO
-* Implement ePub generation
-* Implement email sending
-* Implement other clients
