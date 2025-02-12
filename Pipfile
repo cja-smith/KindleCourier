@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 requests = "*"
 notebook = "*"
+ebooklib = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

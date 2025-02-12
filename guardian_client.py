@@ -60,11 +60,8 @@ class GuardianAPIClient:
             }
 
 
-class Article:
 
-    def __init__(self, headline, trailText, byline, body, thumbnail):
-        self.headline = headline
-        self.trailText = trailText
-        self.byline = byline
-        self.body = body
-        self.thumbnail = thumbnail
+
+
+# Move Article to own .py file
+# NYT API start https://api.nytimes.com/svc/topstories/v2/home.json?api-key=yourkey

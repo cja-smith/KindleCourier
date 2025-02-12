@@ -1,5 +1,15 @@
-guardian_api_key = open("guardian_api.txt").read().strip()
-api_client = GuardianAPIClient(api_key=guardian_api_key)
+from dotenv import load_dotenv
+import os
+from guardian_client import GuardianAPIClient
+from models import Article
+
+
+load_dotenv()
+
+GUARDIAN_API_KEY = os.getenv('GUARDIAN_API_KEY')
+
+api_client = GuardianAPIClient(api_key=GUARDIAN_API_KEY)
+
 
 urls = api_client.get_top_story_urls()
 for url in urls:

@@ -11,3 +11,8 @@ Automatically pull top stories from the Guardian and have them delivered to your
 
 ## Usage
 TBD
+
+## TODO
+* Implement ePub generation
+* Implement email sending
+* Implement other clients
