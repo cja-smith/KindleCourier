@@ -2,9 +2,11 @@ import os
 import time
 
 from dotenv import load_dotenv
+from datetime import datetime
 
 from guardian_client import GuardianAPIClient
 from models import Article
+from utils.ebook_generator import EBookGenerator
 from utils.mail_sender import EmailServer
 
 load_dotenv()
@@ -23,8 +25,11 @@ server = EmailServer(sender_email=EMAIL_ADDRESS,
                      smtp_host=SMTP_HOST,
                      smtp_port=SMTP_PORT)
 
-urls = api_client.get_top_story_urls()
+date_today = datetime.today().strftime('%d-%m-%Y')
+filename=f'KindleCourier {date_today}.epub'
 
+urls = api_client.get_top_story_urls()
+articles = []
 for url in urls:
     article_data = api_client.generate_article(url)
 
@@ -36,11 +41,17 @@ for url in urls:
             body=article_data['body'],
             thumbnail=article_data['thumbnail'],
         )
+        articles.append(article)
     time.sleep(1)
 
+print('Generating ePub')
+ebook = EBookGenerator(title=filename)
 
-'''
-Convert articles into ePub
-'''
+for article in articles:
+    ebook.add_article(article)
+    print(f'Appended {article.headline} to eBook')
 
-server.send_email()
+ebook.generate_ebook()
+print('Generated ePub')
+print(f'Sending eBook')
+server.send_email(filename=filename)

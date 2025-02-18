@@ -63,5 +63,4 @@ class GuardianAPIClient:
 
 
 
-# Move Article to own .py file
 # NYT API start https://api.nytimes.com/svc/topstories/v2/home.json?api-key=yourkey

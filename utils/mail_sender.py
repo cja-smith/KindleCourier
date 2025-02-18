@@ -15,10 +15,10 @@ class EmailServer:
         self.smtp_host=smtp_host
         self.smtp_port=smtp_port
 
-    def send_email(self):
+    def send_email(self, filename='KindleCourier.epub'):
 
         date_today= datetime.today().strftime('%d-%m-%Y')
-        filename=f'KindleCourier {date_today}.epub'
+#        filename=f'KindleCourier {date_today}.epub'
         epub_path = os.path.join(os.getcwd(), 'attachments', filename)
 
         if not os.path.isdir(os.path.join(os.getcwd(), 'attachments')):
