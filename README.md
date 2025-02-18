@@ -41,5 +41,7 @@ Pull top stories from news sites (currently the Guardian) and have them delivere
    python main.py
    ```
 
-## Usage
-TBD
+## TODO
+* Implement table of contents, cover, and image embedding
+* Add css to give it some style (mimic Guardian style, perhaps)
+* Implement another news site (e.g. NYT, BBC)
