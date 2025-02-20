@@ -11,7 +11,8 @@ Pull top stories from news sites (currently the Guardian) and have them delivere
 1. **Clone the repository**  
    ```commandline
    git clone https://github.com/yourusername/KindleCourier.git
-   cd KindleCourier```
+   cd KindleCourier
+   ```
 2. **Install dependencies**
    ```bash
    pip install -r requirements.txt
@@ -34,7 +35,6 @@ Pull top stories from news sites (currently the Guardian) and have them delivere
    # API settings
    GUARDIAN_API_KEY=''
    ```
-  (Tip: Use "App Passwords" for Gmail in step 2.)
 
 4. **Run**
    ```bash

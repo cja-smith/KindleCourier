@@ -24,9 +24,8 @@ class EBookGenerator:
 
     def generate_toc(self):
         toc = []
-        for chapter in self.book.get_items_of_type(epub.EpubHtml):
-            # Ensure that the title is a valid string
-            toc.append((chapter.title, chapter.file_name))
+        for chapter in self.book.items:
+            toc.append(epub.Link(chapter.file_name, chapter.title, chapter.file_name))
         return tuple(toc)
 
 
@@ -34,13 +33,19 @@ class EBookGenerator:
         # Generate Table of Contents
         print('Generating TOC')
         self.book.toc = self.generate_toc()
-        print(self.generate_toc())
-        # Creates spine
-        chapters=[chapter for chapter in self.book.items]
-        chapters.insert(0, 'nav')
-        self.book.spine = chapters
+        print(self.book.toc)
 
+        # Add navigation files
         self.book.add_item(epub.EpubNcx())
         self.book.add_item(epub.EpubNav())
+
+        # Creates spine
+        spine_items = ['nav']
+        for chapter in self.book.items:
+            if isinstance(chapter, epub.EpubHtml):
+                spine_items.append(chapter)
+
+        # Set the spine
+        self.book.spine = spine_items
 
         epub.write_epub(self.output_path, self.book)
