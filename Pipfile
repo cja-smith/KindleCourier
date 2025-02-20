@@ -4,10 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-requests = "*"
 notebook = "*"
-ebooklib = "*"
 python-dotenv = "*"
+dotenv = "*"
+ebooklib = "*"
+requests = "*"
 
 [dev-packages]
 
