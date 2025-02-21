@@ -9,16 +9,16 @@ from models import Article
 from utils.ebook_generator import EBookGenerator
 from utils.mail_sender import EmailServer
 
+load_dotenv()
+
+GUARDIAN_API_KEY = os.getenv('GUARDIAN_API_KEY')
+EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
+KINDLE_EMAIL = os.getenv('KINDLE_EMAIL')
+SMTP_HOST = os.getenv('SMTP_HOST')
+SMTP_PORT = os.getenv('SMTP_PORT')
+
 def main():
-    load_dotenv()
-
-    GUARDIAN_API_KEY = os.getenv('GUARDIAN_API_KEY')
-    EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
-    EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
-    KINDLE_EMAIL = os.getenv('KINDLE_EMAIL')
-    SMTP_HOST = os.getenv('SMTP_HOST')
-    SMTP_PORT = os.getenv('SMTP_PORT')
-
     api_client = GuardianAPIClient(api_key=GUARDIAN_API_KEY)
     server = EmailServer(sender_email=EMAIL_ADDRESS,
                          sender_password=EMAIL_PASSWORD,
@@ -58,4 +58,10 @@ def main():
     server.send_email(filename=filename)
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+        print("Process completed successfully")
+    except Exception as e:
+        print(f"ERROR: Process failed: {e}")
+        import traceback
+        traceback.print_exc()

@@ -5,6 +5,8 @@ from email.mime.base import MIMEBase
 from email import encoders
 from datetime import datetime
 import os
+from smtplib import SMTPResponseException
+
 
 class EmailServer:
     def __init__(self, sender_email, sender_password, kindle_email_address, smtp_host, smtp_port):
@@ -58,6 +60,6 @@ class EmailServer:
         except smtplib.SMTPResponseException as e:
             error_code = e.smtp_code
             error_message = e.smtp_error
-            return (f'Failed to send email:\n'
-                    f'Error code {error_code}\n'
-                    f'Error message: {error_message}')
+            raise smtplib.SMTPResponseException(f'Failed to send email:\n'
+                                                f'Error code {error_code}\n'
+                                                f'Error message: {error_message}')
